@@ -92,7 +92,6 @@ namespace AddressBookUsing_ADO.NET
                 {
                     Console.WriteLine("please enter integer options only");
                 }
-
             }
         }
     }
