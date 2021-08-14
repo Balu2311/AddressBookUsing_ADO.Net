@@ -277,5 +277,53 @@ namespace AddressBookUsing_ADO.NET
                 throw new Exception(e.Message);
             }
         }
+        public void GetNumberOfContactsCountByBookType()
+        {
+            try
+            {
+                using (this.connection)
+                {
+                    using (SqlCommand command = new SqlCommand(
+                        @"SELECT COUNT(first_name) FROM address_book WHERE addressbooktype = 'family'; 
+                        SELECT COUNT(first_name) FROM address_book WHERE addressbooktype = 'friend';
+                        SELECT COUNT(first_name) FROM address_book WHERE addressbooktype = 'office';", connection))
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int count = reader.GetInt32(0);
+                                Console.WriteLine("Number of Contacts From Addressbook_Type_Family:{0} ", +count);
+                                Console.WriteLine("\n");
+                            }
+                            if (reader.NextResult())
+                            {
+                                while (reader.Read())
+                                {
+                                    var count = reader.GetInt32(0);
+                                    Console.WriteLine("Number of Contacts From Addressbook_Type_Friend:{0} ", +count);
+                                    Console.WriteLine("\n");
+                                }
+                            }
+                            if (reader.NextResult())
+                            {
+                                while (reader.Read())
+                                {
+                                    var count = reader.GetInt32(0);
+                                    Console.WriteLine("Number of Contacts From Addressbook_Type_Office:{0} ", +count);
+                                    Console.WriteLine("\n");
+                                }
+                            }
+                        }
+                    }
+                    connection.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

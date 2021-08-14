@@ -15,7 +15,7 @@ namespace AddressBookUsing_ADO.NET
             while (true)
             {
                 Console.WriteLine("\nEnter Choice  \n1.AddContact \n2.EditContact \n3.DeleteContact \n4.RetriveStateorCity" +
-                                  "\n5.SizeofBook\n6.SortPersonNameByCity\n7.Exit ");
+                                  "\n5.SizeofBook\n6.SortPersonNameByCity\n7.CountByBookType\n8.Exit ");
                 int choise = Convert.ToInt32(Console.ReadLine());
                 try
                 {
@@ -71,8 +71,12 @@ namespace AddressBookUsing_ADO.NET
                             abrepo.SortPersonNameByCity();
                             Console.ReadKey();
                             break;
-
                         case 7:
+                            abrepo.GetNumberOfContactsCountByBookType();
+                            Console.ReadKey();
+                            break;
+
+                        case 8:
                             Environment.Exit(0);
                             break;
                         default:
