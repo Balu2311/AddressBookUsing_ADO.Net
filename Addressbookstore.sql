@@ -15,3 +15,4 @@ insert into address_book values(@first_name,@last_name,@address,@city,@state,@zi
 go
 
 select * from address_book
+use addressbook_service
