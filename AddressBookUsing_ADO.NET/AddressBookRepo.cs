@@ -180,5 +180,41 @@ namespace AddressBookUsing_ADO.NET
                 throw new Exception(e.Message);
             }
         }
+        public void AddressBookSizeByCityANDState()
+        {
+            try
+            {
+                using (this.connection)
+                {
+                    using (SqlCommand command = new SqlCommand(
+                        @"select count(first_name) from address_book WHERE city = 'Nuziveedu' AND state = 'AndhraPradesh'; 
+                        select count(first_name) from address_book WHERE city = 'Californiya' AND state = 'Telengana';", connection))
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int count = reader.GetInt32(0);
+                                Console.WriteLine("Total Contacts From City Nuziveedu And State AndhraPradesh: {0}", +count);
+                            }
+                            if (reader.NextResult())
+                            {
+                                while (reader.Read())
+                                {
+                                    int count = reader.GetInt32(0);
+                                    Console.WriteLine("Total Contacts From City Californiya And State Telengana: {0}", +count);
+                                }
+                            }
+                        }
+                        connection.Close();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

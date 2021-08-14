@@ -14,7 +14,7 @@ namespace AddressBookUsing_ADO.NET
             AddressBookModel delmodel = new AddressBookModel();
             while (true)
             {
-                Console.WriteLine("\nEnter Choice  \n1.AddContact \n2.EditContact \n3.DeleteContact \n4.RetriveStateorCity\n5.Exit ");
+                Console.WriteLine("\nEnter Choice  \n1.AddContact \n2.EditContact \n3.DeleteContact \n4.RetriveStateorCity\n5.SizeofBook\n6.Exit ");
                 int choise = Convert.ToInt32(Console.ReadLine());
                 try
                 {
@@ -62,8 +62,12 @@ namespace AddressBookUsing_ADO.NET
                             abrepo.RetrieveContactFromPerticularCityOrState();
                             Console.ReadKey();
                             break;
-
                         case 5:
+                            abrepo.AddressBookSizeByCityANDState();
+                            Console.ReadKey();
+                            break;
+
+                        case 6:
                             Environment.Exit(0);
                             break;
                         default:
