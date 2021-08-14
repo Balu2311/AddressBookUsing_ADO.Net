@@ -98,5 +98,31 @@ namespace AddressBookUsing_ADO.NET
                 this.connection.Close();
             }
         }
+        public void DeleteContactUsingName(AddressBookModel model)
+        {
+            try
+            {
+                using (this.connection)
+                {
+                    //SqlCommand command = new SqlCommand("deletcontactProcedure", connection);
+                    //command.CommandType = CommandType.StoredProcedure;
+                    string deleteQuery = @"Delete from address_book WHERE first_name = @First_Name;";
+                   SqlCommand command = new SqlCommand(deleteQuery, connection);
+                    command.Parameters.AddWithValue("@First_Name", model.First_Name);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    Console.WriteLine("Contact Deleted successfully...");
+                    connection.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                this.connection.Close();
+            }
+        }
     }
 }

@@ -11,9 +11,10 @@ namespace AddressBookUsing_ADO.NET
             //abrepo.CheckConnection();
             AddressBookModel abmodel = new AddressBookModel();
             AddressBookModel abmodel1 = new AddressBookModel();
+            AddressBookModel delmodel = new AddressBookModel();
             while (true)
             {
-                Console.WriteLine("\nEnter Choice  \n1.Add Contact \n2.Edit Contact  \n3.Exit ");
+                Console.WriteLine("\nEnter Choice  \n1.AddContact \n2.EditContact \n3.DeleteContact \n4.Exit ");
                 int choise = Convert.ToInt32(Console.ReadLine());
                 try
                 {
@@ -21,7 +22,7 @@ namespace AddressBookUsing_ADO.NET
                     {
                         case 1:
                             //AddressBookModel abmodel = new AddressBookModel();
-                            abmodel.First_Name = "Vishal";
+                            abmodel.First_Name = "Balanagireddy";
                             abmodel.Last_Name = "Vallem";
                             abmodel.Address = "kdkr";
                             abmodel.City = "Ongl";
@@ -52,8 +53,13 @@ namespace AddressBookUsing_ADO.NET
                             abrepo.EditContactUsingFirstName(abmodel1);
                             Console.ReadKey();
                             break;
-
                         case 3:
+                            delmodel.First_Name = "Balanagireddy";
+                            abrepo.DeleteContactUsingName(delmodel);
+                            Console.ReadKey();
+                            break;
+
+                        case 4:
                             Environment.Exit(0);
                             break;
                         default:
